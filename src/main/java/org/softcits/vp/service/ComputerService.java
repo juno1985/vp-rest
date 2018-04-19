@@ -20,4 +20,10 @@ public class ComputerService {
 		return mbgComputerMapper.selectByExample(null);
 	}
 
+	public void addComputer(MbgComputer mbgComputer) {
+		
+		mbgComputerMapper.insert(mbgComputer);
+		
+	}
+
 }
