@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.softcits.vp.mapper.MbgComputerMapper;
 import org.softcits.vp.model.MbgComputer;
+import org.softcits.vp.model.MbgComputerExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -24,6 +25,13 @@ public class ComputerService {
 		
 		mbgComputerMapper.insert(mbgComputer);
 		
+	}
+
+	public MbgComputer queryComputerById(String id) {
+		MbgComputerExample mgbComputerExa = new MbgComputerExample();
+		MbgComputerExample.Criteria mbgComputerCri = mgbComputerExa.createCriteria();
+		mbgComputerCri.andIdEqualTo(Integer.parseInt(id));
+		return mbgComputerMapper.selectByExample(mgbComputerExa).get(0);
 	}
 
 }

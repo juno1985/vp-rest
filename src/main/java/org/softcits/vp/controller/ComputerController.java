@@ -4,6 +4,7 @@ import org.softcits.vp.service.ComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,5 +31,11 @@ public class ComputerController {
 		computerService.addComputer(mbgComputer);
 		
 		return new ResponseEntity<String>("Success", HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = { "/query/{id}" }, method = { RequestMethod.GET })
+	public ResponseEntity<MbgComputer> queryComputerById(@PathVariable String id){
+		MbgComputer mbgComputer = computerService.queryComputerById(id);
+		return new ResponseEntity<MbgComputer>(mbgComputer, HttpStatus.OK);
 	}
 }

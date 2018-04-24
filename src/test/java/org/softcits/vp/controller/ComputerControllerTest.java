@@ -32,9 +32,23 @@ public class ComputerControllerTest {
 	@Test
 	public void whenGetAll() throws Exception {
 		String result = mockMvc.perform(
-				get("/computer/getAll")
+				get("/admin/pc/getAll")
 						.contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(13))
+				.andReturn().getResponse().getContentAsString();
+		
+		System.out.println(result);
+	}
+	
+	@Test
+	public void whenGetComputerById() throws Exception{
+		String result = mockMvc.perform(
+				get("/admin/pc/query/1")
+						.contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.id").value(1))
+				.andExpect(jsonPath("$.trademark").value("IBM电脑"))
+				.andExpect(jsonPath("$.pic").value("b3600b04d97a4e1eb118012ecfddff92.jpg"))
 				.andReturn().getResponse().getContentAsString();
 		
 		System.out.println(result);
