@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import org.softcits.vp.model.MbgComputer;
+import org.softcits.vp.model.PCPager;
 @RestController
 @RequestMapping("/admin/pc")
 public class ComputerController {
@@ -37,5 +39,10 @@ public class ComputerController {
 	public ResponseEntity<MbgComputer> queryComputerById(@PathVariable String id){
 		MbgComputer mbgComputer = computerService.queryComputerById(id);
 		return new ResponseEntity<MbgComputer>(mbgComputer, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = { "/getPage" }, method = { RequestMethod.GET })
+	public ResponseEntity<PCPager<MbgComputer>> getPage(@RequestParam String pageNum, @RequestParam String rows ){
+		return new ResponseEntity<>(computerService.getComputersByPager(Integer.parseInt(pageNum), Integer.parseInt(rows)),HttpStatus.OK);
 	}
 }
