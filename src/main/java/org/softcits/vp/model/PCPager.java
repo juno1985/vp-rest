@@ -7,7 +7,7 @@ public class PCPager<T> {
 	private Integer pageNum;
 	//rows per page
 	private Integer rows;
-	private Long totalPage;
+	private Long totalRows;
 	private List<T> data;
 	public Integer getPageNum() {
 		return pageNum;
@@ -21,11 +21,11 @@ public class PCPager<T> {
 	public void setRows(Integer rows) {
 		this.rows = rows;
 	}
-	public Long getTotalPage() {
-		return totalPage;
+	public Long getTotalRows() {
+		return totalRows;
 	}
-	public void setTotalPage(Long totalPage) {
-		this.totalPage = totalPage;
+	public void setTotalRows(Long totalPage) {
+		this.totalRows = totalPage;
 	}
 	public List<T> getData() {
 		return data;
@@ -33,6 +33,7 @@ public class PCPager<T> {
 	public void setData(List<T> data) {
 		this.data = data;
 	}
+	
 	
 
 }

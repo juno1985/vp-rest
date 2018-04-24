@@ -45,9 +45,7 @@ public class ComputerService {
 		pcPager.setRows(rows);
 		pcPager.setPageNum(pageNum);
 		Long totalPage = mbgComputerMapper.countByExample(null);
-		pcPager.setTotalPage(totalPage);
+		pcPager.setTotalRows(totalPage);
 		return pcPager;
-			
 	}
-
 }
