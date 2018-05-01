@@ -41,6 +41,12 @@ public class ComputerController {
 		return new ResponseEntity<MbgComputer>(mbgComputer, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = { "/queryName/{tradeMark}" }, method = { RequestMethod.GET })
+	public ResponseEntity<MbgComputer> queryComputerByTradeMark(@PathVariable String tradeMark){
+		MbgComputer mbgComputer = computerService.queryComputerByTradeMark(tradeMark);
+		return new ResponseEntity<MbgComputer>(mbgComputer, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = { "/getPage" }, method = { RequestMethod.GET })
 	public ResponseEntity<PCPager<MbgComputer>> getPage(@RequestParam String pageNum, @RequestParam String rows ){
 		return new ResponseEntity<>(computerService.getComputersByPager(Integer.parseInt(pageNum), Integer.parseInt(rows)),HttpStatus.OK);

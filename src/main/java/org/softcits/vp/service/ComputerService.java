@@ -48,4 +48,15 @@ public class ComputerService {
 		pcPager.setTotalRows(totalPage);
 		return pcPager;
 	}
+	
+	public MbgComputer queryComputerByTradeMark(String tradeMark) {
+		MbgComputerExample mgbComputerExa = new MbgComputerExample();
+		MbgComputerExample.Criteria mbgComputerCri = mgbComputerExa.createCriteria();
+		mbgComputerCri.andTrademarkEqualTo(tradeMark);
+		List<MbgComputer> mbgPCList = mbgComputerMapper.selectByExample(mgbComputerExa);
+		if(mbgPCList.size() > 0) {
+			return mbgPCList.get(0);
+		}
+		else return null;
+	}
 }
